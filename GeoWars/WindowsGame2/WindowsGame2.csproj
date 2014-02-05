@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6FAC764D-4FC4-4260-9A86-B244C17A6884}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WindowsGame2</RootNamespace>
+    <AssemblyName>WindowsGame2</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Sce.PlayStation.Core" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Art.cs">
+      <Link>Art.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\BlackHole.cs">
+      <Link>BlackHole.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\BloomComponent.cs">
+      <Link>BloomComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\BloomSettings.cs">
+      <Link>BloomSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Bullet.cs">
+      <Link>Bullet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Enemy.cs">
+      <Link>Enemy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\EnemySpawner.cs">
+      <Link>EnemySpawner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Entity.cs">
+      <Link>Entity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\EntityManager.cs">
+      <Link>EntityManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Grid.cs">
+      <Link>Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Input.cs">
+      <Link>Input.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\MathUtil.cs">
+      <Link>MathUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\ParticleManager.cs">
+      <Link>ParticleManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\ParticleState.cs">
+      <Link>ParticleState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\PlayerShip.cs">
+      <Link>PlayerShip.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\PlayerStatus.cs">
+      <Link>PlayerStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\PointMass.cs">
+      <Link>PointMass.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Sound.cs">
+      <Link>Sound.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\WindowsGame2\WindowsGame2\WindowsGame2\Spring.cs">
+      <Link>Spring.cs</Link>
+    </Compile>
+    <Compile Include="GameRootVita.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.PSMobile.csproj">
+      <Project>{167676EE-E2D5-440A-BB2B-EFBD02BC8493}</Project>
+      <Name>Lidgren.Network.PSMobile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.PSMobile.csproj">
+      <Project>{EA26E76F-FDFE-4A8C-B5A3-C3B5761E28F9}</Project>
+      <Name>MonoGame.Framework.PSMobile</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
