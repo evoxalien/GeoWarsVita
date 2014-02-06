@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -195,6 +196,11 @@ namespace GeometryWars
         {
             var textWidth = Art.Font.MeasureString(text).X;
             spriteBatch.DrawString(Art.Font, text, new Vector2(5, y), Color.White);
+        }
+
+        public static void WriteFile(string filename, string stuff)
+        {
+            //File.WriteAllText(filename, stuff);
         }
     }
 }
