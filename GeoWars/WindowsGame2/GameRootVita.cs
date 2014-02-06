@@ -161,13 +161,17 @@ namespace GeometryWars
             int print = 0;
             DrawRightAlignedString("Score: " + PlayerStatus.Score, 5 + (30 * print++));
             DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 5 + (30 * print++));
-            if(Input.DevMode)
-			{
-                DrawRightAlignedString("Entities: " + EntityManager.Count, + (30 * print++));
-                DrawRightAlignedString("FPS: " + FPS.ToString(), + (30 * print++));
-			}
-            if(Input.DevMode && Input.GodMode)
-                DrawRightAlignedString("GOD MODE", + (30 * print++));
+            if (Input.DevMode)
+            {
+                DrawRightAlignedString("FPS: " + FPS.ToString(), +(30 * print++));
+                DrawRightAlignedString("Entities: " + EntityManager.Count, +(30 * print++));
+                if (Input.DevModeParticles)
+                    DrawRightAlignedString("Particles: " + ParticleManager.ParticleCount, +(30 * print++));
+                DrawRightAlignedString("Weapon Level: " + PlayerShip.WeaponLevel, +(30 * print++));
+
+                if (Input.GodMode)
+                    DrawRightAlignedString("GOD MODE", +(30 * print++));
+            }
             DrawLeftAlignedString("Lives: " + PlayerStatus.Lives, 5);
             
 
