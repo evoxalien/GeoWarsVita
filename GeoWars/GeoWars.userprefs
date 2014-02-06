@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WindowsGame2\GameRootVita.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\John\Documents\GitHub\WindowsGame2\WindowsGame2\WindowsGame2\Input.cs">
     <Files>
       <File FileName="GeoWars\AppMain.cs" Line="17" Column="3" />
       <File FileName="c:\Users\John\Documents\GitHub\WindowsGame2\WindowsGame2\WindowsGame2\Art.cs" Line="5" Column="17" />
       <File FileName="c:\Users\John\Documents\GitHub\WindowsGame2\WindowsGame2\WindowsGame2\BlackHole.cs" Line="33" Column="68" />
       <File FileName="WindowsGame2\GameRootVita.cs" Line="22" Column="33" />
+      <File FileName="c:\Users\John\Documents\GitHub\WindowsGame2\WindowsGame2\WindowsGame2\Input.cs" Line="138" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
