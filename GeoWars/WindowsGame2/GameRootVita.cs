@@ -178,7 +178,7 @@ namespace GeometryWars
 
             //Draw Cursor
             EntityManager.Draw(spriteBatch);
-            spriteBatch.Draw(Art.Pointer, Input.MousePosition, Color.White);
+            //spriteBatch.Draw(Art.Pointer, Input.MousePosition, Color.White);
             spriteBatch.End();
 
             
