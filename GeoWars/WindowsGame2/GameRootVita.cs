@@ -106,27 +106,35 @@ namespace GeometryWars
         {
             GameTime = gameTime;
             Input.Update();
-            EnemySpawner.Update();
+
+            
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             
             // TODO: Add your update logic here
-            grid.Update();
-            PlayerStatus.Update();
+            
+            
             base.Update(gameTime);
-            EntityManager.Update();
-            ParticleManager.Update();
-			
-			elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-			frameCounter++;
-			
-			if(elapsedTime > 1)
-			{
-				FPS = frameCounter;
-				frameCounter=0;
-				elapsedTime=0;
-			}
+            if (!Input.GamePause)
+            {
+                PlayerStatus.Update();
+                grid.Update();
+                EnemySpawner.Update();
+                EntityManager.Update();
+                ParticleManager.Update();
+            }
+
+            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            frameCounter++;
+
+            if (elapsedTime > 1)
+            {
+                FPS = frameCounter;
+                frameCounter = 0;
+                elapsedTime = 0;
+            }
+        
         }
 
         /// <summary>
@@ -142,10 +150,10 @@ namespace GeometryWars
             
 
             spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
-            if(Input.DevModeGrid)
-				grid.Draw(spriteBatch);
-            if(Input.DevModeParticles)
-				ParticleManager.Draw(spriteBatch);
+            if (Input.DevModeGrid)
+                grid.Draw(spriteBatch);
+            if (Input.DevModeParticles)
+                ParticleManager.Draw(spriteBatch);
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
@@ -154,11 +162,18 @@ namespace GeometryWars
             {
                 string text = "Game Over\n" +
                     "Your Score: " + PlayerStatus.Score + "\n" +
-                    //"High Score: " + PlayerStatus.HighScore
-						 "Thank You Nick!!";
+                    "High Score: " + PlayerStatus.HighScore;
                 Vector2 textSize = Art.Font.MeasureString(text);
                 spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
             }
+
+            if (Input.GamePause)
+            {
+                string text = "Game Paused\n";
+                Vector2 textSize = Art.Font.MeasureString(text);
+                spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
+            }
+
             int print = 0;
             DrawRightAlignedString("Score: " + PlayerStatus.Score, 5 + (30 * print++));
             DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 5 + (30 * print++));
@@ -166,22 +181,21 @@ namespace GeometryWars
             {
                 DrawRightAlignedString("FPS: " + FPS.ToString(), +(30 * print++));
                 DrawRightAlignedString("Entities: " + EntityManager.Count, +(30 * print++));
-                if (Input.DevModeParticles)
+                if(Input.DevModeParticles)
                     DrawRightAlignedString("Particles: " + ParticleManager.ParticleCount, +(30 * print++));
                 DrawRightAlignedString("Weapon Level: " + PlayerShip.WeaponLevel, +(30 * print++));
-
+                
                 if (Input.GodMode)
                     DrawRightAlignedString("GOD MODE", +(30 * print++));
             }
+            
             DrawLeftAlignedString("Lives: " + PlayerStatus.Lives, 5);
             
 
             //Draw Cursor
             EntityManager.Draw(spriteBatch);
             //spriteBatch.Draw(Art.Pointer, Input.MousePosition, Color.White);
-            spriteBatch.End();
-
-            
+            spriteBatch.End();            
 
             base.Draw(gameTime);
         }
