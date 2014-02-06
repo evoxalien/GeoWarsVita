@@ -26,7 +26,9 @@ namespace GeometryWars
         public static ParticleManager<ParticleState> ParticleManager { get; private set; }
         public static GameTime GameTime;
         public static Grid grid;
-
+		int frameCounter;
+		int FPS;
+		float elapsedTime;
         //BloomComponent bloom;
         public GameRoot()
         {
@@ -36,7 +38,8 @@ namespace GeometryWars
 
             //graphics.PreferredBackBufferHeight = 900;
             //graphics.PreferredBackBufferWidth = 1600;
-            //this.IsFixedTimeStep = false;
+            this.IsFixedTimeStep = false;
+			//this.TargetElapsedTime = new TimeSpan(0, 0, 0, 50);
             //graphics.ApplyChanges();
 
             //bloom = new BloomComponent(this);
@@ -56,7 +59,7 @@ namespace GeometryWars
         {
             float AspectRatioW = Viewport.Width / Viewport.Height;
             float AspectRatioH = Viewport.Height / Viewport.Width;
-            int gridScale = 35;
+            int gridScale = 50;
             //Vector2 gridSpace = new Vector2(Viewport.Width/gridScale,Viewport.Height/(gridScale/AspectRatioW));
             Vector2 gridSpace = new Vector2(gridScale, gridScale);
             // TODO: Add your initialization logic here
@@ -66,7 +69,7 @@ namespace GeometryWars
             EntityManager.Add(PlayerShip.Instance);
             MediaPlayer.IsRepeating = true;
             //MediaPlayer.Play(Sound.Music);
-            ParticleManager = new ParticleManager<ParticleState>(1024, ParticleState.UpdateParticle);
+            ParticleManager = new ParticleManager<ParticleState>(256, ParticleState.UpdateParticle);
  
         }
 
@@ -113,6 +116,16 @@ namespace GeometryWars
             base.Update(gameTime);
             EntityManager.Update();
             ParticleManager.Update();
+			
+			elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+			frameCounter++;
+			
+			if(elapsedTime > 1)
+			{
+				FPS = frameCounter;
+				frameCounter=0;
+				elapsedTime=0;
+			}
         }
 
         /// <summary>
@@ -128,8 +141,10 @@ namespace GeometryWars
             
 
             spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
-            grid.Draw(spriteBatch);
-            ParticleManager.Draw(spriteBatch);
+            if(Input.DevModeGrid)
+				grid.Draw(spriteBatch);
+            if(Input.DevModeParticles)
+				ParticleManager.Draw(spriteBatch);
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
@@ -138,17 +153,21 @@ namespace GeometryWars
             {
                 string text = "Game Over\n" +
                     "Your Score: " + PlayerStatus.Score + "\n" +
-                    "High Score: " + PlayerStatus.HighScore;
+                    //"High Score: " + PlayerStatus.HighScore
+						 "Thank You Nick!!";
                 Vector2 textSize = Art.Font.MeasureString(text);
                 spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
             }
-            
-            DrawRightAlignedString("Score: " + PlayerStatus.Score, 5);
-            DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
+            int print = 0;
+            DrawRightAlignedString("Score: " + PlayerStatus.Score, 5 + (30 * print++));
+            DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 5 + (30 * print++));
             if(Input.DevMode)
-                DrawRightAlignedString("Entities: " + EntityManager.Count, 65);
+			{
+                DrawRightAlignedString("Entities: " + EntityManager.Count, + (30 * print++));
+                DrawRightAlignedString("FPS: " + FPS.ToString(), + (30 * print++));
+			}
             if(Input.DevMode && Input.GodMode)
-                DrawRightAlignedString("GOD MODE", 95);
+                DrawRightAlignedString("GOD MODE", + (30 * print++));
             DrawLeftAlignedString("Lives: " + PlayerStatus.Lives, 5);
             
 
